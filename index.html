@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Prediction</title>
+  <style>
+
+    body {
+      /* font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-image: url('static\image\photo-1613490493576-7fde63acd811.jfif');
+      background-size: cover;
+      background-position: center; */
+      background-image: url('/static/image/bg.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+
+    .login {
+      width: 300px;
+      /* margin: 0 auto; */
+      margin-top: 12%;
+      margin-left: 35%;
+      margin-right: 30%;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .login h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    .login input[type="text"] {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 25px;
+      /* border-radius: 25px; */
+      /* box-sizing: border-box; */
+    }
+
+    .login input[type="number"] {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 25px;
+      /* box-sizing: border-box; */
+    }
+
+    .login button[type="submit"] {
+      width: 70%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .login button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <h1>House Price Prediction</h1>
+
+
+    <form action="{{ url_for('predict')}}" method="post">
+      <input type="text" name="location"  list ="location-options" placeholder="Location" required="required" />
+      <input type="number" name="bedrooms" placeholder="Bedrooms" required="required" />
+      <input type="number" name="bathrooms" placeholder="Bathrooms" required="required" />
+      <input type="number" name="sqft" placeholder="sqft" required="required" />
+      <input type="number" name="saleyear" placeholder="Pre sale year" required="required" />
+      <input type="number" name="datebuild" placeholder="Build-Up Year" required="required" />
+      <input type="number" name="parkfacil" placeholder="No. Of Parking Facilities" required="required" />
+      <input type="text" name="street"  list ="street" placeholder="Street" required="required" />
+      <input type="number" name="room" placeholder="No. of rooms" required="required" />
+      <input type="number" name="houseage" placeholder="House Age" required="required" />
+      <br>
+      <button type="submit">Predict</button>
+    </form>
+    <datalist id="location-options">
+      <option value="0" label="Adyar"></option>
+      <option value="1" label="Anna Nagar"></option>
+      <option value="2" label="Chrompet"></option>
+      <option value="3" label="KK Nagar"></option>
+      <option value="4" label="Karapakkam"></option>
+      <option value="5" label="T Nagar" ></option>
+      <option value="6" label="Velachery " ></option>
+    </datalist>
+    <datalist id="street">
+      <option value="0" label="Gravel" ></option>
+      <option value="1" label="No access" ></option>
+      <option value="2" label="Paved"></option>
+    </datalist>
+
+    <div class="result">
+      {% if prediction %}
+        <p>Predicted House Price: {{ prediction }}</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
